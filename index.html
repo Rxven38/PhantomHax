@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PhantomHax • More Cheats</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #e0e0ff;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header {
+      padding: 4rem 0 6rem;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      background: linear-gradient(90deg, #a78bfa, #c084fc, #f472b6);
+      -webkit-background-clip: text;          /* ← DODANE – usuwa warning */
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(168, 85, 247, 0.5);
+      transition: transform 0.4s ease, text-shadow 0.4s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    h1:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 80px rgba(168, 85, 247, 0.8);
+    }
+
+    .download-btn {
+      margin: 3rem auto;
+      display: inline-block;
+      padding: 1rem 3rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(45deg, #7c3aed, #a78bfa, #c084fc);
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+      transition: all 0.35s ease;
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-6px) scale(1.06);
+      box-shadow: 0 20px 50px rgba(168, 85, 247, 0.6);
+    }
+
+    .soon-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 12, 41, 0.92);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+
+    .soon-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .soon-text {
+      font-size: clamp(6rem, 15vw, 14rem);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      background: linear-gradient(90deg, #ff6b6b, #ff8e53, #ffaf7b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 60px rgba(255, 107, 107, 0.7);
+      animation: pulse 2.5s infinite, glitch 4s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+      10% { text-shadow: -2px 0 red, 2px 0 cyan; }
+      20% { text-shadow: 0 0 red, 0 0 cyan; }
+      100% { text-shadow: 0 0 transparent; }
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(168, 85, 247, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.2); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.8; }
+      100% { transform: translateY(-20vh) scale(0.8); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<div class="container">
+  <header>
+    <h1 id="morecheats">MORE CHEATS</h1>
+  </header>
+
+  <!-- Przycisk download – zmień nazwę pliku jeśli masz inaczej -->
+  <a href="PhantomHax.zip" download="PhantomHax.zip" class="download-btn">
+    Download Script
+  </a>
+</div>
+
+<div class="soon-overlay" id="soon">
+  <div class="soon-text">SOON</div>
+</div>
+
+<script>
+// Particle background
+const particlesContainer = document.getElementById('particles');
+
+function createParticle() {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.width = p.style.height = Math.random() * 5 + 2 + 'px';
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.animationDuration = Math.random() * 15 + 10 + 's';
+  p.style.animationDelay = Math.random() * 5 + 's';
+  particlesContainer.appendChild(p);
+
+  setTimeout(() => p.remove(), 20000);
+}
+
+setInterval(createParticle, 300);
+
+// Kliknięcie w MORE CHEATS → SOON
+document.getElementById('morecheats').addEventListener('click', () => {
+  document.getElementById('soon').classList.add('active');
+  setTimeout(() => {
+    document.getElementById('soon').classList.remove('active');
+  }, 3500);
+});
+</script>
+
+</body>
+</html>
